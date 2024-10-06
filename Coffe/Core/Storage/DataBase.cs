@@ -1,4 +1,7 @@
-﻿using Coffe.Entities.Users;
+﻿using Coffe.Core.Helpers;
+using Coffe.Entities.Materials;
+using Coffe.Entities.Product;
+using Coffe.Entities.Users;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,24 +26,26 @@ namespace Coffe.Core.Storage
             {
                 Instance = new DataBase();
                 Instance.BASE_PATH = basePath;
+                Instance.Configure();
             }
         }
 
         public string BASE_PATH;
-        Dictionary<Type,string> UniqueKeys = new Dictionary<Type,string>();
+        private Dictionary<Type, string> pathes = new Dictionary<Type, string>();
 
-
-        public ICollection<T> Read<T>(string path, Predicate<T> match) where T : new()
+        public async Task<ICollection<T>> Read<T>(Predicate<T> match) where T : new()
         {
             string inputText = "";
             ICollection<T> result = new List<T>();
 
-            using (FileStream input = new FileStream(Path.Combine(BASE_PATH,path), FileMode.Open))
+            string path = Path.Combine(BASE_PATH, pathes[typeof(T)]);
+
+            using (FileStream input = new FileStream(path, FileMode.Open))
             {
                 using (StreamReader reader = new StreamReader(input))
                 {
 
-                    inputText = reader.ReadToEnd();
+                    inputText = await reader.ReadToEndAsync();
                 }
             };
 
@@ -74,12 +79,27 @@ namespace Coffe.Core.Storage
             return result;
         }
 
-        public void Store<T>(T Data, string path)
+        public async void Store<T>(T Data) where T : new()
         {
             #region ConvertToText
             string result = "";
             var properties = Data.GetType().GetProperties();
 
+            //Check for duplicate Primary key
+            foreach (var property in properties)
+            {
+                if(Attribute.IsDefined(property, typeof(PrimeryKeyAttribute)))
+                {
+                    var prim = await Read<T>(p => p.GetType().GetProperty(property.Name).GetValue(typeof(T)) == property.GetValue(Data));
+                    if(prim != null || prim.Count != 0)
+                    {
+                        throw new Exception("Cant add Records with same Primary Key");
+                    }
+                }
+            }
+
+
+            //Convert To String
             foreach (var property in properties)
             {
                 if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) && property.PropertyType != typeof(string))
@@ -106,22 +126,25 @@ namespace Coffe.Core.Storage
             result = result.Trim(';');
             #endregion
 
-
             #region StoreFile
-            using (FileStream store = new FileStream(Path.Combine(BASE_PATH, path), FileMode.Append, FileAccess.Write))
+
+            string path = Path.Combine(BASE_PATH, pathes[typeof(T)]);
+            using (FileStream store = new FileStream(path, FileMode.Append, FileAccess.Write))
             {
                 using (StreamWriter writer = new StreamWriter(store))
                 {
-                    writer.WriteLine(result);
+                    await writer.WriteLineAsync(result);
                     Console.WriteLine("Done, new Record Added => record : " + result);
                 }
-            }; 
+            };
             #endregion
         }
 
         private void Configure()
         {
-            UniqueKeys.Add(typeof(User), typeof(User).GetType().GetProperty("DisplayName").Name);
+            pathes.Add(typeof(User), "Users\\users.txt");
+            pathes.Add(typeof(Product), "Products\\products.txt");
+            pathes.Add(typeof(Materials), "Materials\\materials.txt");
         }
     }
 }

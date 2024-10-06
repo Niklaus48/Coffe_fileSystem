@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coffe.Core.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Coffe.Entities.Users
 {
     public class User
     {
+        [PrimeryKey]
         public string userName { get; set; }
         public string password { get; set; }
         public string displayName { get; set; }
