@@ -1,4 +1,5 @@
 ﻿using Coffe.Core.Storage;
+using Coffe.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,20 +36,30 @@ namespace Coffe.UI
 
         private void buttonSignin_Click(object sender, EventArgs e)
         {
-            // signinUsername.Text;
+            if (signinPassword.Text == null)
+            {
+                MessageBox.Show("Please enter your password");
+                return;
+            }
+            if (signinUsername.Text == null)
+            {
+                MessageBox.Show("Please enter your Username");
+                return;
+            }
 
-           //var gfkhmfgok = DataBase.read<User>("uhbiobh", User => User.usernane == signinUsername.text);
+            var user = signinUsername.Text;
+            var pas = signinPassword.Text;
+            var check = DataBase.Instance.Read<User>("", p => p.userName == user);
+            if(check == null)
+            {
+                MessageBox.Show("You are not registered yet! Open the red text to register");
+                return;
+            }
+            if (check.First().password == pas)
+            {
 
-           // if(gfkhmfgok == null)
-           // {
+            }
 
-           // }
-
-           // if(ghogvk.password == signinPassword.text)
-           // {
-
-           // }
-            
         }
     }
 }

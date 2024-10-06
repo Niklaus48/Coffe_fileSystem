@@ -44,6 +44,31 @@ namespace Coffe.form
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            if(signupUsername.Text == null)
+            {
+                MessageBox.Show("enter username ");
+                return;
+            }
+
+            if (signupPassword.Text == null)
+            {
+                MessageBox.Show("enter Password ");
+                return;
+            }
+
+            if (signupDis.Text == null)
+            {
+                MessageBox.Show("enter Displayname ");
+                return;
+            }
+
+            if (signupPhone.Text == null)
+            {
+                MessageBox.Show("enter phoneNumber ");
+                return;
+            }
+
+
 
         }
     }
