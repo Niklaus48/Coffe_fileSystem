@@ -42,10 +42,14 @@ namespace Coffe
                 materialsId = ids ,
                 id = 1,
             };
+
+
             DataBase dataBase = new DataBase();
             dataBase.Store<User>(user);
             Console.WriteLine("\n");
             dataBase.Store<Product>(product);
+
+            var fd = dataBase.Read<User>("D:\\1.txt");
         }
     }
 }

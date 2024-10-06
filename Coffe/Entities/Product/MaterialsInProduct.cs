@@ -8,6 +8,7 @@ namespace Coffe.Entities.Product
 {
     public class MaterialsInProduct
     {
+        public int id { get; set; }
         public int productId { get; set; }
         public int materialId { get; set; }
     }
