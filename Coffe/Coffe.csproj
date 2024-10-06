@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Helpers\PrimeryKeyAttribute.cs" />
     <Compile Include="Core\Storage\DataBase.cs" />
     <Compile Include="Core\Storage\IDataBase.cs" />
     <Compile Include="Entities\Materials\Materials.cs" />
