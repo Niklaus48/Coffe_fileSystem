@@ -1,5 +1,4 @@
 ﻿using Coffe.Core.Storage;
-using Coffe.Entities.Users;
 using System;
 using System.Windows.Forms;
 
@@ -14,6 +13,8 @@ namespace Coffe
         [STAThread]
         static void Main()
         {
+            //define dataBase instance at entry point 
+            DataBase.SetupDataBaseAsSingletone("D:\\Coffe");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

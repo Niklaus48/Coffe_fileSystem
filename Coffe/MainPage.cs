@@ -24,10 +24,26 @@ namespace Coffe
         {
             User user = new User()
             {
-                displayName = "Test",
-                userName = "Test2",
-                password = "Test3",
+                displayName = "Khar",
+                userName = "Test",
+                password = "44",
                 phoneNumber = "1234567890",
+            };
+
+            User user1 = new User()
+            {
+                displayName = "sag",
+                userName = "Test1",
+                password = "28",
+                phoneNumber = "1234512",
+            };
+
+            User user2 = new User()
+            {
+                displayName = "goraz",
+                userName = "Test1",
+                password = "44",
+                phoneNumber = "1234512",
             };
 
             List<int> ids = new List<int>();
@@ -39,17 +55,23 @@ namespace Coffe
             {
                 name = "Ghahve",
                 price = 200,
-                materialsId = ids ,
+                materialsId = ids,
                 id = 1,
             };
 
+            DataBase.Instance.Store(user, "Users\\users.txt");
+            DataBase.Instance.Store(user1, "Users\\users.txt");
+            DataBase.Instance.Store(user2, "Users\\users.txt");
+            DataBase.Instance.Store(product, "Products\\products.txt");
 
-            DataBase dataBase = new DataBase();
-            dataBase.Store<User>(user);
-            Console.WriteLine("\n");
-            dataBase.Store<Product>(product);
+            var sag = DataBase.Instance.Read<User>("Users\\users.txt", p => p.password == "44");
 
-            var fd = dataBase.Read<User>("D:\\1.txt");
+            foreach (var item in sag)
+            {
+                Console.WriteLine(item.displayName);
+            }
+
+            Console.WriteLine(sag);
         }
     }
 }

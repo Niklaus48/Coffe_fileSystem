@@ -9,9 +9,9 @@ namespace Coffe.Core.Storage
     public interface IDataBase
     {
 
-        void Store<T>(T Data);
+        void Store<T>(T Data, string path);
 
-        Type Read<T>(string path);
+        ICollection<T> Read<T>(string path, Predicate<T> match) where T : new ();
 
     }
 }
