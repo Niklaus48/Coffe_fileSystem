@@ -1,6 +1,7 @@
 ﻿using Coffe.Core.Storage;
 using Coffe.Entities.Product;
 using Coffe.Entities.Users;
+using Coffe.form;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,10 @@ namespace Coffe
 
         private void MainPage_Load(object sender, EventArgs e)
         {
+
+            Form signup = new Sign_UP();
+            signup.ShowDialog();
+
             User user = new User()
             {
                 displayName = "Khar",
@@ -58,20 +63,6 @@ namespace Coffe
                 materialsId = ids,
                 id = 1,
             };
-
-            DataBase.Instance.Store(user, "Users\\users.txt");
-            DataBase.Instance.Store(user1, "Users\\users.txt");
-            DataBase.Instance.Store(user2, "Users\\users.txt");
-            DataBase.Instance.Store(product, "Products\\products.txt");
-
-            var sag = DataBase.Instance.Read<User>("Users\\users.txt", p => p.password == "44");
-
-            foreach (var item in sag)
-            {
-                Console.WriteLine(item.displayName);
-            }
-
-            Console.WriteLine(sag);
         }
     }
 }

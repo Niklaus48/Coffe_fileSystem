@@ -34,7 +34,7 @@ namespace Coffe.UI
 
         }
 
-        private void buttonSignin_Click(object sender, EventArgs e)
+        private async void buttonSignin_Click(object sender, EventArgs e)
         {
             if (signinPassword.Text == null)
             {
@@ -49,7 +49,7 @@ namespace Coffe.UI
 
             var user = signinUsername.Text;
             var pas = signinPassword.Text;
-            var check = DataBase.Instance.Read<User>("", p => p.userName == user);
+            var check = await DataBase.Instance.Read<User>( p => p.userName == user);
             if(check == null)
             {
                 MessageBox.Show("You are not registered yet! Open the red text to register");

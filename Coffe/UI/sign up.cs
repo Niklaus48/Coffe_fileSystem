@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Coffe.Core.Storage;
+using Coffe.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -66,6 +68,23 @@ namespace Coffe.form
             {
                 MessageBox.Show("enter phoneNumber ");
                 return;
+            }
+
+            User user = new User()
+            {
+                displayName=signupDis.Text,
+                userName=signupUsername.Text,
+                password=signupPassword.Text,
+                phoneNumber=signupPhone.Text,
+            };
+
+            try
+            {
+                DataBase.Instance.Store(user);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
 
