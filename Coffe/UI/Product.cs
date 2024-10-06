@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Coffe.Core.Storage;
+using Coffe.Entities.Product;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,19 +12,24 @@ using System.Windows.Forms;
 
 namespace Coffe.UI
 {
-    public partial class Product : Form
+    public partial class ProductView : Form
     {
-        public Product()
+        public ProductView()
         {
             InitializeComponent();
         }
 
-        private void Product_Load(object sender, EventArgs e)
+        private async void Product_Load(object sender, EventArgs e)
+        {
+            productList.DataSource = await DataBase.Instance.Read<Product>(null);
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

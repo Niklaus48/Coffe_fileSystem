@@ -78,6 +78,7 @@
             this.label3.Size = new System.Drawing.Size(106, 25);
             this.label3.TabIndex = 11;
             this.label3.Text = "password:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // buttonSignin
             // 
