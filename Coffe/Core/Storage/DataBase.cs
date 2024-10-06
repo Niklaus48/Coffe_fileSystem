@@ -90,8 +90,17 @@ namespace Coffe.Core.Storage
             {
                 if(Attribute.IsDefined(property, typeof(PrimeryKeyAttribute)))
                 {
-                    var prim = await Read<T>(p => p.GetType().GetProperty(property.Name).GetValue(typeof(T)) == property.GetValue(Data));
-                    if(prim != null || prim.Count != 0)
+                    var prim = await Read<T>(p =>
+                    {
+                        var propertyValue = p.GetType().GetProperty(property.Name).GetValue(p);
+                        if(propertyValue == null)
+                        {
+                            return false;
+                        }
+                        return propertyValue.Equals(property.GetValue(Data));
+                    });
+
+                    if(prim != null && prim.Count != 0)
                     {
                         throw new Exception("Cant add Records with same Primary Key");
                     }

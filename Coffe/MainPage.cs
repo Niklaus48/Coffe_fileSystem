@@ -2,6 +2,7 @@
 using Coffe.Entities.Product;
 using Coffe.Entities.Users;
 using Coffe.form;
+using Coffe.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +25,11 @@ namespace Coffe
         private void MainPage_Load(object sender, EventArgs e)
         {
 
-            Form signup = new Sign_UP();
-            signup.ShowDialog();
+            //Form signup = new Sign_UP();
+            //signup.ShowDialog();
+
+            Form signIn = new Sign_IN();
+            signIn.ShowDialog();
 
             User user = new User()
             {
@@ -49,19 +53,6 @@ namespace Coffe
                 userName = "Test1",
                 password = "44",
                 phoneNumber = "1234512",
-            };
-
-            List<int> ids = new List<int>();
-            ids.Add(1);
-            ids.Add(2);
-            ids.Add(3);
-
-            Product product = new Product()
-            {
-                name = "Ghahve",
-                price = 200,
-                materialsId = ids,
-                id = 1,
             };
         }
     }

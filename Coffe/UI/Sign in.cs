@@ -36,12 +36,14 @@ namespace Coffe.UI
 
         private async void buttonSignin_Click(object sender, EventArgs e)
         {
-            if (signinPassword.Text == null)
+
+
+            if (string.IsNullOrEmpty(signinPassword.Text))
             {
                 MessageBox.Show("Please enter your password");
                 return;
             }
-            if (signinUsername.Text == null)
+            if (string.IsNullOrEmpty(signinUsername.Text))
             {
                 MessageBox.Show("Please enter your Username");
                 return;
@@ -49,16 +51,32 @@ namespace Coffe.UI
 
             var user = signinUsername.Text;
             var pas = signinPassword.Text;
-            var check = await DataBase.Instance.Read<User>( p => p.userName == user);
-            if(check == null)
+            var check = await DataBase.Instance.Read<User>(p => p.userName == user);
+            if (check == null)
             {
-                MessageBox.Show("You are not registered yet! Open the red text to register");
+                MessageBox.Show("You are not registered yet!");
                 return;
             }
-            if (check.First().password == pas)
-            {
 
+            if (check.FirstOrDefault().password == pas)
+            {
+                MessageBox.Show("you are logged in");
+                Close();
             }
+            else
+            {
+                MessageBox.Show("Wrong Password");
+            }
+
+        }
+
+        private void signinPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Sign_IN_Load(object sender, EventArgs e)
+        {
 
         }
     }
