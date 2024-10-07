@@ -5,14 +5,8 @@ using Coffe.Entities.Users;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Coffe.Core.Storage
 {
@@ -32,8 +26,6 @@ namespace Coffe.Core.Storage
 
         public string BASE_PATH;
         private Dictionary<Type, string> pathes = new Dictionary<Type, string>();
-
-
 
         public async Task<ICollection<T>> Read<T>(Predicate<T> match = null) where T : new()
         {
@@ -94,21 +86,21 @@ namespace Coffe.Core.Storage
             //Check for duplicate Primary key
             foreach (var property in properties)
             {
-                if(Attribute.IsDefined(property, typeof(PrimeryKeyAttribute)))
+                if (Attribute.IsDefined(property, typeof(PrimeryKeyAttribute)))
                 {
                     var prim = await Read<T>(p =>
                     {
                         var propertyValue = p.GetType().GetProperty(property.Name).GetValue(p);
-                        if(propertyValue == null)
+                        if (propertyValue == null)
                         {
                             return false;
                         }
                         return propertyValue.Equals(property.GetValue(Data));
                     });
 
-                    if(prim != null && prim.Count != 0)
+                    if (prim != null && prim.Count != 0)
                     {
-                        //throw new Exception("Cant add Records with same Primary Key");
+                        throw new Exception("Cant add Records with same Primary Key");
                     }
                 }
             }
@@ -160,6 +152,10 @@ namespace Coffe.Core.Storage
             pathes.Add(typeof(User), "Users\\users.txt");
             pathes.Add(typeof(Product), "Products\\products.txt");
             pathes.Add(typeof(Materials), "Materials\\materials.txt");
+
+            Directory.CreateDirectory(Path.Combine(BASE_PATH, "Users"));
+            Directory.CreateDirectory(Path.Combine(BASE_PATH, "Products"));
+            Directory.CreateDirectory(Path.Combine(BASE_PATH, "Materials"));
         }
     }
 }
