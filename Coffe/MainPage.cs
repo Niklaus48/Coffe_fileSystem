@@ -28,8 +28,11 @@ namespace Coffe
             //Form signup = new Sign_UP();
             //signup.ShowDialog();
 
-            Form signIn = new Sign_IN();
-            signIn.ShowDialog();
+            //Form signIn = new Sign_IN();
+            //signIn.ShowDialog();
+
+            Form addProduct = new AddProduct();
+            addProduct.ShowDialog();
 
             User user = new User()
             {

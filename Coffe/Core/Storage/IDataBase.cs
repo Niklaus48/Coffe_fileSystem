@@ -11,7 +11,7 @@ namespace Coffe.Core.Storage
 
         void Store<T>(T Data) where T : new();
 
-        Task<ICollection<T>> Read<T>(Predicate<T> match) where T : new();
+        Task<ICollection<T>> Read<T>(Predicate<T> match = null) where T : new();
 
     }
 }

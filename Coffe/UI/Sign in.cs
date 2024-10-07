@@ -1,5 +1,6 @@
 ﻿using Coffe.Core.Storage;
 using Coffe.Entities.Users;
+using Coffe.form;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +56,9 @@ namespace Coffe.UI
             if (check == null)
             {
                 MessageBox.Show("You are not registered yet!");
-                return;
+                Form signUp = new Sign_UP();
+                signUp.ShowDialog();
+                Close();
             }
 
             if (check.FirstOrDefault().password == pas)

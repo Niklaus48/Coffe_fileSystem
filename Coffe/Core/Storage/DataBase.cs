@@ -33,18 +33,24 @@ namespace Coffe.Core.Storage
         public string BASE_PATH;
         private Dictionary<Type, string> pathes = new Dictionary<Type, string>();
 
-        public async Task<ICollection<T>> Read<T>(Predicate<T> match) where T : new()
+
+
+        public async Task<ICollection<T>> Read<T>(Predicate<T> match = null) where T : new()
         {
+            if (match == null)
+            {
+                match = p => true;
+            }
+
             string inputText = "";
             ICollection<T> result = new List<T>();
 
             string path = Path.Combine(BASE_PATH, pathes[typeof(T)]);
 
-            using (FileStream input = new FileStream(path, FileMode.Open))
+            using (FileStream input = new FileStream(path, FileMode.OpenOrCreate))
             {
                 using (StreamReader reader = new StreamReader(input))
                 {
-
                     inputText = await reader.ReadToEndAsync();
                 }
             };
@@ -102,7 +108,7 @@ namespace Coffe.Core.Storage
 
                     if(prim != null && prim.Count != 0)
                     {
-                        throw new Exception("Cant add Records with same Primary Key");
+                        //throw new Exception("Cant add Records with same Primary Key");
                     }
                 }
             }

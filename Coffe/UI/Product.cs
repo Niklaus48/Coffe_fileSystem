@@ -21,7 +21,13 @@ namespace Coffe.UI
 
         private async void Product_Load(object sender, EventArgs e)
         {
-            productList.DataSource = await DataBase.Instance.Read<Product>(null);
+            var products = await DataBase.Instance.Read<Product>();
+
+            foreach (var product in products)
+            {
+                
+            }
+            productList.DataSource = products;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)

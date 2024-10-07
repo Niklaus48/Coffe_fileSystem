@@ -46,25 +46,25 @@ namespace Coffe.form
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if(signupUsername.Text == null)
+            if (string.IsNullOrEmpty(signupUsername.Text))
             {
                 MessageBox.Show("enter username ");
                 return;
             }
 
-            if (signupPassword.Text == null)
+            if (string.IsNullOrEmpty( signupPassword.Text))
             {
                 MessageBox.Show("enter Password ");
                 return;
             }
 
-            if (signupDis.Text == null)
+            if (string.IsNullOrEmpty(signupDis.Text))
             {
                 MessageBox.Show("enter Displayname ");
                 return;
             }
 
-            if (signupPhone.Text == null)
+            if (string.IsNullOrEmpty(signupPhone.Text))
             {
                 MessageBox.Show("enter phoneNumber ");
                 return;
@@ -72,19 +72,19 @@ namespace Coffe.form
 
             User user = new User()
             {
-                displayName=signupDis.Text,
-                userName=signupUsername.Text,
-                password=signupPassword.Text,
-                phoneNumber=signupPhone.Text,
+                displayName = signupDis.Text,
+                userName = signupUsername.Text,
+                password = signupPassword.Text,
+                phoneNumber = signupPhone.Text,
             };
 
             try
             {
                 DataBase.Instance.Store(user);
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+                Console.WriteLine("sdvbsdjv sdjv");
             }
 
 

@@ -11,9 +11,9 @@ namespace Coffe.Entities.Product
     public class Product
     {
         [PrimeryKey]
-        public int id { get; set; }
+        public string id { get; set; }
         public string name { get; set; }
         public int price { get; set; }
-        public ICollection<int> materialsId { get; set; }
+        public ICollection<string> materialsId { get; set; }
     }
 }

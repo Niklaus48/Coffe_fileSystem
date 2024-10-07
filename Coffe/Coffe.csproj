@@ -53,6 +53,12 @@
     <Compile Include="Entities\Product\MaterialsInProduct.cs" />
     <Compile Include="Entities\Product\Product.cs" />
     <Compile Include="Entities\Users\User.cs" />
+    <Compile Include="UI\AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\CustomPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="UI\Sign in.Designer.cs">
       <DependentUpon>Sign in.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\CustomPopUp.resx">
       <DependentUpon>CustomPopUp.cs</DependentUpon>
     </EmbeddedResource>
