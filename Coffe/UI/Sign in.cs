@@ -53,7 +53,7 @@ namespace Coffe.UI
             var user = signinUsername.Text;
             var pas = signinPassword.Text;
             var check = await DataBase.Instance.Read<User>(p => p.userName == user);
-            if (check == null)
+            if (check == null || check.Count == 0)
             {
                 MessageBox.Show("You are not registered yet!");
                 Form signUp = new Sign_UP();
@@ -64,12 +64,17 @@ namespace Coffe.UI
             if (check.FirstOrDefault().password == pas)
             {
                 MessageBox.Show("you are logged in");
-                Close();
+
+                Form mainPage = new MainPage();
+                mainPage.ShowDialog();
+
             }
             else
             {
                 MessageBox.Show("Wrong Password");
+
             }
+
 
         }
 

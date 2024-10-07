@@ -1,5 +1,6 @@
 ﻿using Coffe.Core.Storage;
 using Coffe.Entities.Users;
+using Coffe.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,7 +85,9 @@ namespace Coffe.form
             }
             catch
             {
-                Console.WriteLine("sdvbsdjv sdjv");
+                MessageBox.Show("You have already registered");
+                Form signIn = new Sign_IN();
+                signIn.ShowDialog();
             }
 
 

@@ -28,35 +28,27 @@ namespace Coffe
             //Form signup = new Sign_UP();
             //signup.ShowDialog();
 
-            //Form signIn = new Sign_IN();
-            //signIn.ShowDialog();
+            Form signIn = new Sign_IN();
+            signIn.ShowDialog();
 
             //Form addProduct = new AddProduct();
             //addProduct.ShowDialog();
 
-            User user = new User()
-            {
-                displayName = "Khar",
-                userName = "Test",
-                password = "44",
-                phoneNumber = "1234567890",
-            };
+        }
 
-            User user1 = new User()
-            {
-                displayName = "sag",
-                userName = "Test1",
-                password = "28",
-                phoneNumber = "1234512",
-            };
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-            User user2 = new User()
-            {
-                displayName = "goraz",
-                userName = "Test1",
-                password = "44",
-                phoneNumber = "1234512",
-            };
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSignup_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

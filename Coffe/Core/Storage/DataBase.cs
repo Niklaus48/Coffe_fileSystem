@@ -152,6 +152,7 @@ namespace Coffe.Core.Storage
             pathes.Add(typeof(User), "Users\\users.txt");
             pathes.Add(typeof(Product), "Products\\products.txt");
             pathes.Add(typeof(Materials), "Materials\\materials.txt");
+            pathes.Add(typeof(Cart))
 
             Directory.CreateDirectory(Path.Combine(BASE_PATH, "Users"));
             Directory.CreateDirectory(Path.Combine(BASE_PATH, "Products"));
