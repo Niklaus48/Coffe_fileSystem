@@ -59,12 +59,6 @@
     <Compile Include="UI\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CustomPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\CustomPopUp.Designer.cs">
-      <DependentUpon>CustomPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +87,6 @@
     </Compile>
     <EmbeddedResource Include="UI\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\CustomPopUp.resx">
-      <DependentUpon>CustomPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Product.resx">
       <DependentUpon>Product.cs</DependentUpon>
